@@ -56,5 +56,5 @@ volumes:
     driver: local
 
 networks:
-  elastic:
+  elk:
     driver: bridge
