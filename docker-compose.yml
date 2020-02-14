@@ -26,7 +26,7 @@ services:
     volumes:
       - type: bind
         source: ./config/logstash.conf
-        target: /usr/share/logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.conf
         read_only: true
       - data02:/usr/share/logstash/data
     ports:
