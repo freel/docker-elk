@@ -25,7 +25,7 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - type: bind
-        source: ./logstash/config/logstash.yml
+        source: ./config/logstash.yml
         target: /usr/share/logstash/config/logstash.yml
         read_only: true
       - data02:/usr/share/logstash/data

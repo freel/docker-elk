@@ -11,6 +11,7 @@ input {
     path => "/var/log/syslog"
     start_position => "beginning"
     sincedb_path => "/dev/null"
+    type => syslog
   }
 }
 
