@@ -25,8 +25,8 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - type: bind
-        source: ./config/logstash.conf
-        target: /usr/share/logstash/config/logstash.conf
+        source: ./logstash/pipeline/logstash.conf
+        target: /usr/share/logstash/pipeline/logstash.conf
         read_only: true
       - data02:/usr/share/logstash/data
     ports:
