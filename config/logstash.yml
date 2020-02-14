@@ -7,12 +7,17 @@ input {
     port => 5000
     type => syslog
   }
+  file {
+    path => "/var/log/syslog"
+    start_position => "beginning"
+    sincedb_path => "/dev/null"
+  }
 }
 
 filter {
   if [type] == "syslog" {
     grok {
-      match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+      # match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
       add_field => [ "received_at", "%{@timestamp}" ]
       add_field => [ "received_from", "%{host}" ]
     }
@@ -23,6 +28,6 @@ filter {
 }
 
 output {
-  elasticsearch { hosts => ["localhost:9200"] }
+  elasticsearch { hosts => ["elasticsearch:9200"] }
   stdout { codec => rubydebug }
 }
