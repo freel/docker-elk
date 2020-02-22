@@ -95,7 +95,8 @@ services:
     network_mode: host
     ports:
       - 22181:22181
-      - 22888:23888
+      - 22888:22888
+      - 23888:23888
     extra_hosts: 
       - "moby:127.0.0.1"
     deploy:
@@ -114,7 +115,8 @@ services:
     network_mode: host
     ports:
       - 32181:32181
-      - 32888:33888
+      - 32888:32888
+      - 33888:33888
     extra_hosts: 
       - "moby:127.0.0.1"
     deploy:
@@ -133,6 +135,7 @@ services:
     network_mode: host
     ports:
       - 42181:42181
+      - 42888:42888
       - 42888:43888
     extra_hosts: 
       - "moby:127.0.0.1"
