@@ -86,7 +86,7 @@ services:
   zookeeper1:
     image: confluentinc/cp-zookeeper:5.1.0
     environment:
-      ZOO_MY_ID: 1
+      ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_CLIENT_PORT: 22181
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_INIT_LIMIT: 5
@@ -103,7 +103,7 @@ services:
   zookeeper2:
     image: confluentinc/cp-zookeeper:5.1.0
     environment:
-      ZOO_MY_ID: 2
+      ZOOKEEPER_SERVER_ID: 2
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_INIT_LIMIT: 5
