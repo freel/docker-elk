@@ -108,4 +108,3 @@ networks:
   elk:
     driver: overlay
     attachable: true
-    name: elk
