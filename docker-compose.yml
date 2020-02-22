@@ -28,8 +28,6 @@ services:
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
     volumes:
       - esdata02:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
     networks:
       - elk
     deploy:
@@ -46,8 +44,6 @@ services:
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
     volumes:
       - esdata03:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
     networks:
       - elk
     deploy:
