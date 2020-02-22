@@ -92,7 +92,6 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    network_mode: host
     ports:
       - 22181:22181
       - 22888:22888
@@ -112,7 +111,6 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    network_mode: host
     ports:
       - 32181:32181
       - 32888:32888
@@ -132,7 +130,6 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    network_mode: host
     ports:
       - 42181:42181
       - 42888:42888
