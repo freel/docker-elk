@@ -55,10 +55,7 @@ services:
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
-      - type: bind
-        source: /usr/local/share/logstash/logstash.conf
-        target: /usr/share/logstash/pipeline/logstash.conf
-        read_only: true
+      - /usr/local/share/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - lsdata01:/usr/share/logstash/data
     ports:
       - "5000:5000/tcp"
