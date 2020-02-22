@@ -86,6 +86,30 @@ services:
       mode: replicated
       replicas: 3
 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.1.0
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+    ports:
+      - 2181:2181
+    deploy:
+      mode: replicated
+      replicas: 3
+
+
+  kafka:
+    image: confluentinc/cp-kafka:5.1.0
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://10.128.0.5:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+      - 9092:9092
+    links:
+      - zookeeper
+    deploy:
+      mode: replicated
+      replicas: 3
 
 volumes:
   esdata01:
