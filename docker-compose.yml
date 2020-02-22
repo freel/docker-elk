@@ -135,7 +135,8 @@ services:
       replicas: 1
 
   kafka1:
-    image: confluentinc/cp-kafka:5.1.0depends_on:
+    image: confluentinc/cp-kafka:5.1.0
+    depends_on:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
@@ -150,7 +151,8 @@ services:
       replicas: 1
 
   kafka2:
-    image: confluentinc/cp-kafka:5.1.0depends_on:
+    image: confluentinc/cp-kafka:5.1.0
+    depends_on:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
@@ -165,7 +167,8 @@ services:
       replicas: 1
 
   kafka3:
-    image: confluentinc/cp-kafka:5.1.0depends_on:
+    image: confluentinc/cp-kafka:5.1.0
+    depends_on:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
