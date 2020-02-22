@@ -81,32 +81,104 @@ services:
       - elk
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
 
-  zookeeper:
+  zookeeper1:
     image: confluentinc/cp-zookeeper:5.1.0
     environment:
-      - ZOOKEEPER_CLIENT_PORT=2181
+      ZOO_MY_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 22181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
     ports:
-      - 2181:2181
+      - 22181:22181
+    extra_hosts: 
+      - "moby:127.0.0.1"
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
 
-
-  kafka:
-    image: confluentinc/cp-kafka:5.1.0
+  zookeeper2:
+    image: confluentinc/cp-zookeeper:5.1.0
     environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://10.128.0.5:9092
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      ZOO_MY_ID: 2
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
     ports:
-      - 9092:9092
-    links:
-      - zookeeper
+      - 32181:32181
+    extra_hosts: 
+      - "moby:127.0.0.1"
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
+
+  zookeeper3:
+    image: confluentinc/cp-zookeeper:5.1.0
+    environment:
+      ZOOKEEPER_SERVER_ID: 3
+      ZOOKEEPER_CLIENT_PORT: 42181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
+    ports:
+      - 32181:32181
+    extra_hosts: 
+      - "moby:127.0.0.1"
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  kafka1:
+    image: confluentinc/cp-kafka:5.1.0depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:19092
+    ports:
+      - 19092:19092
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  kafka2:
+    image: confluentinc/cp-kafka:5.1.0depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+    ports:
+      - 29092:29092
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  kafka3:
+    image: confluentinc/cp-kafka:5.1.0depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:39092
+    ports:
+      - 39092:39092
+    deploy:
+      mode: replicated
+      replicas: 1
+
 
 volumes:
   esdata01:
