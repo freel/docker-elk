@@ -101,47 +101,62 @@ services:
       mode: replicated
       replicas: 3
 
-  kafka1:
+  kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
+    container_name: kafka
     environment:
-      KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:19092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
     ports:
-      - 19092:19092
+        - 9092:9092
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
 
-  kafka2:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-    ports:
-      - 29092:29092
-    deploy:
-      mode: replicated
-      replicas: 1
+  # kafka1:
+  #   image: confluentinc/cp-kafka:latest
+  #   depends_on:
+  #     - zookeeper
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:19092
+  #   ports:
+  #     - 19092:19092
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
 
-  kafka3:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 3
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:39092
-    ports:
-      - 39092:39092
-    deploy:
-      mode: replicated
-      replicas: 1
+  # kafka2:
+  #   image: confluentinc/cp-kafka:latest
+  #   depends_on:
+  #     - zookeeper
+  #   environment:
+  #     KAFKA_BROKER_ID: 2
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+  #   ports:
+  #     - 29092:29092
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+
+  # kafka3:
+  #   image: confluentinc/cp-kafka:latest
+  #   depends_on:
+  #     - zookeeper
+  #   environment:
+  #     KAFKA_BROKER_ID: 3
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:39092
+  #   ports:
+  #     - 39092:39092
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
 
 
 volumes:
