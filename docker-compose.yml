@@ -107,8 +107,3 @@ volumes:
     driver: local
   kdata01:
     driver: local
-
-# networks:
-#   elk:
-#     driver: overlay
-#     scope: swarm
