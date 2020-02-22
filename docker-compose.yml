@@ -68,7 +68,7 @@ services:
       - elk
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
       update_config:
         failure_action: rollback
         parallelism: 1
@@ -84,7 +84,7 @@ services:
       - elk
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
 
 
 volumes:
