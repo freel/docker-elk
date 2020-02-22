@@ -92,10 +92,9 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    extra_hosts:
-      - "moby:127.0.0.1"
     ports:
       - 22181:22181
+    network_mode: "host"
     extra_hosts: 
       - "moby:127.0.0.1"
     deploy:
@@ -111,10 +110,9 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    extra_hosts:
-      - "moby:127.0.0.1"
     ports:
       - 32181:32181
+    network_mode: "host"
     extra_hosts: 
       - "moby:127.0.0.1"
     deploy:
@@ -130,10 +128,9 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-    extra_hosts:
-      - "moby:127.0.0.1"
     ports:
       - 42181:42181
+    network_mode: "host"
     extra_hosts: 
       - "moby:127.0.0.1"
     deploy:
