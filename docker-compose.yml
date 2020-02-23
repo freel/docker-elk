@@ -107,7 +107,7 @@ services:
       - zookeeper
     container_name: kafka
     environment:
-      HOSTNAME_COMMAND: "docker info | grep "^Name:" | cut -d' ' -f 2"
+      HOSTNAME_COMMAND: "docker info | grep 'Name:' | cut -d' ' -f 2"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://0.0.0.0:9093
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://_{HOSTNAME_COMMAND}:9092,EXTERNAL://localhost:9093
