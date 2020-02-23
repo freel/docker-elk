@@ -99,7 +99,7 @@ services:
       - "moby:127.0.0.1"
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 1
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -111,7 +111,7 @@ services:
       KAFKA_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://0.0.0.0:9093
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_INTER_BROKER_LISTENER_NAME: EXTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
         - 9092:9092
