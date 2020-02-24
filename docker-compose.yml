@@ -106,10 +106,10 @@ services:
       - zookeeper
     container_name: kafka
     environment:
-      HOSTNAME_COMMAND: "ip addr"
+      HOSTNAME_COMMAND: "docker info | grep 'Name:' | cut -d' ' -f 3"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://$HOSTNAME_COMMAND:9092"
+      KAFKA_LISTENERS: PLAINTEXT://$HOSTNAME_COMMAND:9092
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://_{$HOSTNAME_COMMAND}:9092"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
       - 9092:9092
